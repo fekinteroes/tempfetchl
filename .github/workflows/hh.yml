@@ -1,0 +1,17 @@
+name: fetchhh
+on: workflow_dispatch
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          mkdir -p out
+          curl -L 'https://moderngov.lambeth.gov.uk/ieListDocuments.aspx?CId=116%26MId=17395' -o out/a
+          curl -L 'https://moderngov.lambeth.gov.uk/ieListDocuments.aspx?CId=113%26MId=17385' -o out/b
+          curl -L 'https://moderngov.lambeth.gov.uk/ieListDocuments.aspx?CId=600%26MId=17465' -o out/c
+          curl -L 'https://moderngov.lambeth.gov.uk/ieListDocuments.aspx?CId=733%26MId=17451' -o out/d
+          curl -L 'https://moderngov.lambeth.gov.uk/ieListDocuments.aspx?CId=115%26MId=17474' -o out/e
+      - uses: actions/upload-artifact@v4
+        with:
+          name: o
+          path: out
