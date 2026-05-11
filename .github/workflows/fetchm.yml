@@ -1,0 +1,22 @@
+name: fetchm
+on: workflow_dispatch
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          mkdir -p out
+          curl -L 'https://moderngov.lambeth.gov.uk/ieListDocuments.aspx?CId=116&MId=17395&Ver=4' -o out/m17395.html
+          curl -L 'https://moderngov.lambeth.gov.uk/documents/g17395/Public%20reports%20pack.pdf' -o out/m17395.pdf
+          curl -L 'https://moderngov.lambeth.gov.uk/ieListDocuments.aspx?CId=113&MId=17385&Ver=4' -o out/m17385.html
+          curl -L 'https://moderngov.lambeth.gov.uk/documents/g17385/Public%20reports%20pack.pdf' -o out/m17385.pdf
+          curl -L 'https://moderngov.lambeth.gov.uk/ieListDocuments.aspx?CId=600&MId=17465&Ver=4' -o out/m17465.html
+          curl -L 'https://moderngov.lambeth.gov.uk/documents/g17465/Public%20reports%20pack.pdf' -o out/m17465.pdf
+          curl -L 'https://moderngov.lambeth.gov.uk/ieListDocuments.aspx?CId=733&MId=17451&Ver=4' -o out/m17451.html
+          curl -L 'https://moderngov.lambeth.gov.uk/documents/g17451/Public%20reports%20pack.pdf' -o out/m17451.pdf
+          curl -L 'https://moderngov.lambeth.gov.uk/ieListDocuments.aspx?CId=115&MId=17474&Ver=4' -o out/m17474.html
+          curl -L 'https://moderngov.lambeth.gov.uk/documents/g17474/Public%20reports%20pack.pdf' -o out/m17474.pdf
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pagesm
+          path: out
